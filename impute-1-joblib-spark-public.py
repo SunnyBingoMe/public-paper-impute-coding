@@ -431,7 +431,7 @@ def distance_ed_extended_weighted(query_index_array_w_predict, row_index_history
     history_max_left_index_array  = history_instance_index_array[:one_side_span]
     history_max_right_index_array = history_instance_index_array[-one_side_span:]
     
-    #TODO: delete missing, if any
+    # delete missing, if any
     max_left_index_non_missing_logic_array = np.logical_and(main_data_a[query_max_left_index_array] >= 0, main_data_a[history_max_left_index_array] >= 0)
     max_right_index_non_missing_logic_array = np.logical_and(main_data_a[query_max_right_index_array] >= 0, main_data_a[history_max_right_index_array] >= 0)
     query_max_left_index_array  = query_max_left_index_array[max_left_index_non_missing_logic_array][-one_d:]
@@ -530,7 +530,6 @@ def train_one_point(one_train_index):
             
     # train
     for one_d in d_range:
-        #distance_listing = Parallel(n_jobs=parallel_job_nr)(delayed(distance_ed_extend)(query_index_array_w_predict, row_index, one_d) for row_index in range(0, history_instance_index_array_listing.shape[0]))
         distance_listing = np.empty(shape=(0, 0))
         for row_index in range(0, history_instance_index_array_listing.shape[0]):
             if(distance_index == 0):
@@ -543,12 +542,7 @@ def train_one_point(one_train_index):
                 one_distance = distance_ed_extended_weighted_sensitive(query_index_array_w_predict, row_index, one_d)
             distance_listing = np.append(distance_listing, one_distance)
         
-        #TO-IMPROVE: append (train_index,effective_left_gap,effective_right_gap) # each train-instance / each (row & train-instance)
-        #distance_listing_big = np.array(distance_listing) * 10000 # dist is around 0.x ~ 1.x
-        #reserved_col_0 = history_instance_index_array_listing[:,0]
-        #np.save('/tmp/reserved_col_0.npy', reserved_col_0)
-        #history_instance_index_array_listing[:,0] = np.round(distance_listing_big) # otherwise will be truncated to lower int values.
-        # OBS: above convert is not considering big distance values caused overflow.
+        # TO-IMPROVE: append (train_index,effective_left_gap,effective_right_gap) # each train-instance / each (row & train-instance)
         
         for one_v in v_range:
             #select the fist related shifts from top history_instance_index_array_listing
@@ -557,22 +551,21 @@ def train_one_point(one_train_index):
             nr_rows_for_v = nr_shifts_for_v * nr_comparable_seasons
             selected_neighbours_for_v = history_instance_index_array_listing[:nr_rows_for_v]
             selected_distance_for_v = distance_listing[:nr_rows_for_v]
-            #sort by dist. #TO-IMPROVE: for-each type of dist
+            # sort by dist. #TO-IMPROVE: for-each type of dist
             selected_neighbours_for_v = selected_neighbours_for_v[selected_distance_for_v.argsort()]
             prediction_indexes_of_nearest_neighbours_max_k = selected_neighbours_for_v[:,-1]
             
             for one_k in k_range:
                 prediction_indexes_of_nearest_neighbours_one_k = prediction_indexes_of_nearest_neighbours_max_k[:one_k]
-                #TO-IMPROVE (weighted) avg as predict
+                # TO-IMPROVE (weighted) avg as predict
                 predictions_of_nearest_neighbours = main_data_a[prediction_indexes_of_nearest_neighbours_one_k]
                 prediction = np.mean(predictions_of_nearest_neighbours)
-                #measure predicted err (original err, can calculate MAE/RMSE later)
+                # measure predicted err (original err, can calculate MAE/RMSE later)
                 err = prediction - one_train_ground_truth
-                #append (train_index,k,d,v,err) to all_train_results #TO-IMPROVE: 1 col for dist type
+                # append (train_index,k,d,v,err) to all_train_results #TO-IMPROVE: 1 col for dist type
                 one_point_result = np.hstack((one_train_index, one_k, one_d, one_v, err))
                 one_point_all_tuples_result_listing = np.vstack((one_point_all_tuples_result_listing, one_point_result))
-        #reserved_col_0 = np.load('/tmp/reserved_col_0.npy')
-        #history_instance_index_array_listing[:,0] = reserved_col_0
+                
     one_point_all_tuples_result_listing = one_point_all_tuples_result_listing[1:]
     main_data_a[one_train_index] = one_train_ground_truth
     return(one_point_all_tuples_result_listing)
@@ -598,7 +591,6 @@ print('start and end index_index: ' + str(this_runner_train_index_index_start) +
 if(use_spark):
     max_allowed_query_one_side_extend_sc_bc = sc.broadcast(max_allowed_query_one_side_extend)
     nr_complete_seasons_sc_bc = sc.broadcast(nr_complete_seasons)
-    #one_side_span_sc_bc = sc.broadcast(one_side_span)
 
 if(debugging):
     if(not use_spark):
