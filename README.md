@@ -49,4 +49,6 @@ kNN, 34% more accurate than benchmarking methods, and it is still robust even if
 }
 ```
 
+# Paper
+The paper is available on [Diva](http://www.diva-portal.org/smash/record.jsf?c=3&searchType=SIMPLE&language=en&pid=diva2%3A1145422) and [ResearchGate](https://www.researchgate.net/publication/320087317_An_Improved_k-Nearest_Neighbours_Method_for_Traffic_Time_Series_Imputation).
 
