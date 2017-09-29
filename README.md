@@ -5,7 +5,7 @@ The data comes from [UCI Database](https://archive.ics.uci.edu/ml/datasets/Dodge
 
 # Usage
 ```bash
-# default, about 5% missing:
+# default data, about 5% missing:
 python2 impute-1-joblib-spark-public.py 2 1 0
 # other missing ratio, e.g. 10%:
 python2 impute-1-joblib-spark-public.py 2 1 0 0.1
@@ -30,8 +30,11 @@ kNN, 34% more accurate than benchmarking methods, and it is still robust even if
 
 # Citation Request
 **[IEEE Format]** B. Sun, L. Ma, W. Cheng, W. Wen, P. Goswami, and G. Bai, “An Improved k-Nearest Neighbours Method for Traffic Time Series Imputation,” in Chinese Automation Congress (CAC), Jinan, China, 2017.
+
 **[AAA Format]** Bin Sun, Liyao Ma, Wei Cheng, et al. 2017. An Improved K-Nearest Neighbours Method for Traffic Time Series Imputation. In Chinese Automation Congress (CAC). Jinan, China: IEEE.
+
 **[Bibtex]:**
+
 ```tex
 @inproceedings{sun2017improved,
   location = {{Jinan, China}},
