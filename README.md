@@ -6,7 +6,8 @@ The data comes from [UCI Database](https://archive.ics.uci.edu/ml/datasets/Dodge
 # Usage
 (Optional, but please firstly check if you want to set `use_spark` at the beginning of the code.)
 
-(If you want to really impute the missing values, for example, after inner-analysis, please set `real_impute_NOT_param_estimate=True`.)
+(If you want to really impute the missing values, for example, after inner-analysis, 
+please set `real_impute_NOT_param_estimate=True` and set the estimated optimal values at input `In [354]`.)
 
 ```bash
 # default data, about 5% missing:
