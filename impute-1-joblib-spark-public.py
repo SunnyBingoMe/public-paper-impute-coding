@@ -316,11 +316,6 @@ else:
     d_range = exp_range_cover(4, nr_periods_per_season / 4, 2) # both sides (wingspan) is using / 2, but one-side d is / 4.
     v_range = exp_range_cover(4, sp.sqrt(nr_periods_per_season), 2)
     
-    # sunny experienced, to save time for draft. only for draft !!!
-    k_range = exp_range_inc(4, nr_complete_seasons / 2, 2)
-    d_range = exp_range_inc(2, 32, 2)
-    v_range = np.array((4, 8, 16))
-    
     # generated array
     k_range = np.array(list(k_range))
     d_range = np.array(list(d_range))
