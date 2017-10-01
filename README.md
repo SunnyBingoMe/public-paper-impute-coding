@@ -4,6 +4,10 @@ The missing values are marked as `-1` in the example data file `Dodgers.data.csv
 The data comes from [UCI Database](https://archive.ics.uci.edu/ml/datasets/Dodgers+Loop+Sensor) and we converted it into a .csv file for convenience.
 
 # Usage
+(Optional, but please firstly check if you want to set `use_spark` at the beginning of the code.)
+
+(If you want to really impute the missing values, for example, after inner-analysis, please set `real_impute_NOT_param_estimate=True`.)
+
 ```bash
 # default data, about 5% missing:
 python2 impute-1-joblib-spark-public.py 2 1 0
