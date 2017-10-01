@@ -14,7 +14,7 @@ Tip:
 About 2500 non-missing points (5%) are selected to test the accuracy.
 To avoid the influence of selected points on the real-missing data, only 1 point is used in each config, it will take hours to run. 
 Spark or multi-server config is suggested. 
-If 4 servers are used, the following 4 commands should be excuted on each server:
+If 4 servers are used, the following 4 commands should be excuted on each of the 4 servers respectively:
 ```sh
 python2 impute-1-joblib-spark-public.py 2 4 0
 python2 impute-1-joblib-spark-public.py 2 4 1
